@@ -34,9 +34,19 @@ public class TodoItemService implements ITodoItemService {
 
     @Override
     public TodoItem add(TodoItem todoItem) {
-        if(null == todoItem.getCreateTime()){
+        if (null == todoItem.getCreateTime()) {
             todoItem.setCreateTime(Instant.now());
         }
         return dao.add(todoItem);
+    }
+
+    @Override
+    public boolean delete(String id) {
+        return dao.delete(id);
+    }
+
+    @Override
+    public boolean complete(String id) {
+        return dao.complete(id);
     }
 }

@@ -12,4 +12,8 @@ public interface ITodoItemService {
     List<TodoItem> get(String id);
 
     TodoItem add(TodoItem todoItem);
+
+    boolean delete(String id);
+
+    boolean complete(String id);
 }

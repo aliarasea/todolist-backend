@@ -33,4 +33,14 @@ public class TodoItemRestController {
     public TodoItem add(@RequestBody TodoItem todoItem) {
         return service.add(todoItem);
     }
+
+    @DeleteMapping(value = "/delete/{id}")
+    public boolean delete(@PathVariable String id){
+        return service.delete(id);
+    }
+
+    @PostMapping(value = "/complete/{id}")
+    public boolean complete(@PathVariable String id){
+        return service.complete(id);
+    }
 }
