@@ -2,15 +2,11 @@ package com.winwin.todolist.controller;
 
 import com.winwin.todolist.model.TodoItem;
 import com.winwin.todolist.service.TodoItemService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api")
 public class TodoItemRestController {
     private final TodoItemService service;
 
@@ -18,13 +14,23 @@ public class TodoItemRestController {
         this.service = service;
     }
 
-    @GetMapping(value = "getfirst/{count}")
-    public List<TodoItem> get(@PathVariable int count) {
-        return service.get(count);
+    @GetMapping(value = "/get/first/{count}")
+    public List<TodoItem> getFirst(@PathVariable int count) {
+        return service.getFirst(count);
     }
 
-    @GetMapping(value = "get/{id}")
-    public List<TodoItem> get(@PathVariable String id) {
+    @GetMapping(value = "/get/last/{count}")
+    public List<TodoItem> getLast(@PathVariable int count) {
+        return service.getLast(count);
+    }
+
+    @GetMapping(value = "/get/{id}")
+    public List<TodoItem> getById(@PathVariable String id) {
         return service.get(id);
+    }
+
+    @PostMapping(value = "/add")
+    public TodoItem add(@RequestBody TodoItem todoItem) {
+        return service.add(todoItem);
     }
 }
