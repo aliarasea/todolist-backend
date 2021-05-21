@@ -12,7 +12,7 @@ public interface ITodoItemDao {
 
     TodoItem add(TodoItem todoItem);
 
-    boolean delete(String id);
+    TodoItem delete(String id);
 
-    boolean complete(String id);
+    TodoItem complete(String id);
 }

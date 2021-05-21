@@ -41,12 +41,12 @@ public class TodoItemService implements ITodoItemService {
     }
 
     @Override
-    public boolean delete(String id) {
+    public TodoItem delete(String id) {
         return dao.delete(id);
     }
 
     @Override
-    public boolean complete(String id) {
+    public TodoItem complete(String id) {
         return dao.complete(id);
     }
 }

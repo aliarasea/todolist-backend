@@ -35,12 +35,12 @@ public class TodoItemRestController {
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public boolean delete(@PathVariable String id){
+    public TodoItem delete(@PathVariable String id){
         return service.delete(id);
     }
 
     @PostMapping(value = "/complete/{id}")
-    public boolean complete(@PathVariable String id){
+    public TodoItem complete(@PathVariable String id){
         return service.complete(id);
     }
 }
