@@ -1,7 +1,6 @@
 package com.winwin.todolist.dataaccess;
 
 import com.mongodb.MongoException;
-import com.mongodb.assertions.Assertions;
 import com.winwin.todolist.constant.SortType;
 import com.winwin.todolist.model.TodoItem;
 import com.winwin.todolist.repo.TodoItemRepository;
@@ -9,7 +8,6 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.Assert;
 
 import java.time.Instant;
 import java.util.Arrays;
@@ -43,14 +41,13 @@ public class TodoItemDao implements ITodoItemDao {
         return repository.save(todoItem);
     }
 
-    public boolean delete(String id) {
-        boolean result = false;
+    public TodoItem delete(String id) {
+        TodoItem result = null;
         try {
             TodoItem item = get(id).get(0);
             if (null == item.getDeleteTime()) {
                 item.setDeleteTime(Instant.now());
-                repository.save(item);
-                result = true;
+                result = repository.save(item);
             }
         } catch (MongoException exception) {
             log.error(exception.getMessage());
@@ -58,14 +55,13 @@ public class TodoItemDao implements ITodoItemDao {
         return result;
     }
 
-    public boolean complete(String id) {
-        boolean result = false;
+    public TodoItem complete(String id) {
+        TodoItem result = null;
         try {
             TodoItem item = get(id).get(0);
             if (null == item.getDeleteTime() && null == item.getCompleteTime()) {
                 item.setCompleteTime(Instant.now());
-                repository.save(item);
-                result = true;
+                result = repository.save(item);
             }
 
         } catch (MongoException exception) {
