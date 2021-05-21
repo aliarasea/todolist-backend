@@ -5,6 +5,11 @@ import com.winwin.todolist.model.TodoItem;
 import java.util.List;
 
 public interface ITodoItemService {
-    List<TodoItem> get(int count);
+    List<TodoItem> getFirst(int count);
+
+    List<TodoItem> getLast(int count);
+
     List<TodoItem> get(String id);
+
+    TodoItem add(TodoItem todoItem);
 }
